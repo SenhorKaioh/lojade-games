@@ -2,6 +2,7 @@
 import { Transform, TransformFnParams } from 'class-transformer';
 import { IsNotEmpty, IsNumber } from 'class-validator';
 import { Categorias } from 'src/categorias/entities/categorias.entity';
+import { Usuario } from 'src/usuario/entities/usuario.entity';
 
 
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
@@ -38,4 +39,8 @@ export class Produtos{
     })
     categorias: Categorias;
     
+    @ManyToOne(() => Usuario, (usuario) => usuario.produtos, {
+        onDelete: "CASCADE"
+    })
+    usuario: Usuario
 }
